@@ -5,38 +5,37 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.google.android.material.button.MaterialButton
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var action: Button = findViewById(R.id.btnOperation)
-        var plus: Button = findViewById(R.id.btnPlus)
-        var minus: Button = findViewById(R.id.btnMinus)
-        var multiple: Button = findViewById(R.id.btnX)
-        var divide: Button = findViewById(R.id.btnDivide)
-        var point: Button = findViewById(R.id.btnPoint)
-        var left: Button = findViewById(R.id.btnOpen)
-        var right: Button = findViewById(R.id.btnClose)
-        var numberOne: TextView = findViewById(R.id.tvNum1)
-        var numberTwo: TextView = findViewById(R.id.tvNum2)
-        var result: TextView = findViewById(R.id.tvResult)
-        var numNull: Button = findViewById(R.id.btn0)
-        var numOne: Button = findViewById(R.id.btn1)
-        var numTwo: Button = findViewById(R.id.btn2)
-        var numThree: Button = findViewById(R.id.btn3)
-        var numFour: Button = findViewById(R.id.btn4)
-        var numFive: Button = findViewById(R.id.btn5)
-        var numSix: Button = findViewById(R.id.btn6)
-        var numSeven: Button = findViewById(R.id.btn7)
-        var numEight: Button = findViewById(R.id.btn8)
-        var numNine: Button = findViewById(R.id.btn9)
-        var C: Button = findViewById(R.id.btnC)
-        var AC: Button = findViewById(R.id.btnAC)
-        var equal: Button = findViewById(R.id.btnEqual)
-        val answer: Int = 0
+        val action: Button = findViewById(R.id.btnOperation)
+        val plus: Button = findViewById(R.id.btnPlus)
+        val minus: Button = findViewById(R.id.btnMinus)
+        val multiple: Button = findViewById(R.id.btnX)
+        val divide: Button = findViewById(R.id.btnDivide)
+        val point: Button = findViewById(R.id.btnPoint)
+        val left: Button = findViewById(R.id.btnOpen)
+        val right: Button = findViewById(R.id.btnClose)
+        val numberOne: TextView = findViewById(R.id.tvNum1)
+        val numberTwo: TextView = findViewById(R.id.tvNum2)
+        val result: TextView = findViewById(R.id.tvResult)
+        val numNull: Button = findViewById(R.id.btn0)
+        val numOne: Button = findViewById(R.id.btn1)
+        val numTwo: Button = findViewById(R.id.btn2)
+        val numThree: Button = findViewById(R.id.btn3)
+        val numFour = findViewById<Button>(R.id.btn4)
+        val numFive: Button = findViewById(R.id.btn5)
+        val numSix: Button = findViewById(R.id.btn6)
+        val numSeven: Button = findViewById(R.id.btn7)
+        val numEight: Button = findViewById(R.id.btn8)
+        val numNine: Button = findViewById(R.id.btn9)
+        val C: Button = findViewById(R.id.btnC)
+        val AC: Button = findViewById(R.id.btnAC)
+        val equal: Button = findViewById(R.id.btnEqual)
         var switcher = 1
 
 
@@ -44,8 +43,8 @@ class MainActivity : AppCompatActivity() {
             val x = tv1.text.toString().toDouble()
             val y = tv2.text.toString().toDouble()
             val op = oper.text.toString()
-            var otv = ""
-            var sum = when (op) {
+            var otv=""
+            val sum = when (op) {
                 "+" -> (x + y)
                 "-" -> (x - y)
                 "*" -> (x * y)
@@ -55,12 +54,19 @@ class MainActivity : AppCompatActivity() {
             if ((sum * 10 % 10).equals(0.0)) {
                 otv = sum.toInt().toString()
             } else {
-                otv = sum.toString()
+                otv = "%.1f".format(sum).toString()
             }
             return otv
         }
 
         AC.setOnClickListener {
+            if(result.text.isNotEmpty()){
+                numberTwo.setText(null)
+                numberOne.setText(result.text.toString())
+                result.setText(null)
+                action.setText(null)
+                switcher=1
+            }
             if (switcher == 1) {
                 numberOne.text = numberOne.text.toString().dropLast(1)
             }
@@ -75,9 +81,9 @@ class MainActivity : AppCompatActivity() {
                     val currentText = result.text.toString()
                     val buttonText = point.text.toString()
                     numberOne.text = currentText + buttonText
-                    numberTwo.setText(null)
                     result.setText(null)
                     switcher=1
+                    action.setText(null)
                 }
             }
             if (switcher == 1) {
@@ -86,17 +92,11 @@ class MainActivity : AppCompatActivity() {
                     val buttonText = point.text.toString()
                     numberOne.text = currentText + buttonText
                 }
-                else{
-
-                }
             } else {
                 if (!numberTwo.text.toString().contains(".")) {
                     val currentText = numberTwo.text.toString()
                     val buttonText = point.text.toString()
                     numberTwo.text = currentText + buttonText
-                }
-                else{
-
                 }
             }
         }
@@ -120,8 +120,9 @@ class MainActivity : AppCompatActivity() {
                 numberOne.setText(result.text.toString())
                 action.text = plus.text.toString()
                 numberTwo.setText(null)
+                result.setText(null)
             }
-            if (!numberOne.text.isEmpty()) {
+            if (numberOne.text.isNotEmpty()) {
                 action.text = plus.text.toString()
                 switcher = 2
             }
@@ -133,8 +134,9 @@ class MainActivity : AppCompatActivity() {
                 numberOne.setText(result.text.toString())
                 action.text = minus.text.toString()
                 numberTwo.setText(null)
+                result.setText(null)
             }
-            if (!numberOne.text.isEmpty()) {
+            if (numberOne.text.isNotEmpty()) {
                 action.text = minus.text.toString()
                 switcher = 2
             }
@@ -146,8 +148,9 @@ class MainActivity : AppCompatActivity() {
                 numberOne.setText(result.text.toString())
                 action.text = divide.text.toString()
                 numberTwo.setText(null)
+                result.setText(null)
             }
-            if (!numberOne.text.isEmpty()) {
+            if (numberOne.text.isNotEmpty()) {
                 action.text = divide.text.toString()
                 switcher = 2
             }
@@ -159,8 +162,9 @@ class MainActivity : AppCompatActivity() {
                 numberOne.setText(result.text.toString())
                 action.text = multiple.text.toString()
                 numberTwo.setText(null)
+                result.setText(null)
             }
-            if (!numberOne.text.isEmpty()) {
+            if (numberOne.text.isNotEmpty()) {
                 action.text = multiple.text.toString()
                 switcher = 2
             }
@@ -170,6 +174,13 @@ class MainActivity : AppCompatActivity() {
         right.setOnClickListener { switcher = 2 }
 
         val inptNums = View.OnClickListener {
+            if(result.text.isNotEmpty()){
+                numberTwo.setText(null)
+                numberOne.setText(result.text.toString())
+                result.setText(null)
+                action.setText(null)
+                switcher=1
+            }
             if (switcher == 1) {
                 val s = "${numberOne.text.toString()}${(it as Button).text}"
                 numberOne.setText(s)
@@ -194,5 +205,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-
 
