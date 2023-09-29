@@ -22,7 +22,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnOperation" />
+        app:layout_constraintTop_toTopOf="@+id/btnOperation"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/tvNum1"
@@ -39,7 +40,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnOperation"
@@ -53,7 +55,8 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/tvResult"
         app:layout_constraintStart_toStartOf="@+id/tvResult"
-        app:layout_constraintTop_toTopOf="@+id/tvNum1" />
+        app:layout_constraintTop_toTopOf="@+id/tvNum1"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <LinearLayout

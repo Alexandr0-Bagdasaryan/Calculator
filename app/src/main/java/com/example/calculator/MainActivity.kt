@@ -123,73 +123,19 @@ class MainActivity : AppCompatActivity() {
             switcher = 1
         }
 
-        plus.setOnClickListener {
-            if (result.text.toString().isNotEmpty()) {
-                switcher = 2
-                numberOne.setText(result.text.toString())
-                action.text = plus.text.toString()
-                numberTwo.setText(null)
-                result.setText(null)
-            }
-            if (numberOne.text.isNotEmpty()) {
-                action.text = plus.text.toString()
-                switcher = 2
-            }
-        }
 
-        minus.setOnClickListener {
-            if (result.text.toString().isNotEmpty()) {
-                switcher = 2
-                numberOne.setText(result.text.toString())
-                action.text = minus.text.toString()
-                numberTwo.setText(null)
-                result.setText(null)
-            }
-            if (numberOne.text.isNotEmpty()) {
-                action.text = minus.text.toString()
-                switcher = 2
-            }
-        }
-
-        divide.setOnClickListener {
-            if (result.text.toString().isNotEmpty()) {
-                switcher = 2
-                numberOne.setText(result.text.toString())
-                action.text = divide.text.toString()
-                numberTwo.setText(null)
-                result.setText(null)
-            }
-            if (numberOne.text.isNotEmpty()) {
-                action.text = divide.text.toString()
-                switcher = 2
-            }
-        }
-
-        multiple.setOnClickListener {
-            if (result.text.toString().isNotEmpty()) {
-                switcher = 2
-                numberOne.setText(result.text.toString())
-                action.text = multiple.text.toString()
-                numberTwo.setText(null)
-                result.setText(null)
-            }
-            if (numberOne.text.isNotEmpty()) {
-                action.text = multiple.text.toString()
-                switcher = 2
-            }
-        }
 
         left.setOnClickListener { switcher = 1 }
         right.setOnClickListener { switcher = 2 }
 
         val inptNums = View.OnClickListener {
-            if(result.text.isNotEmpty()){
-                numberTwo.setText(null)
-                numberOne.setText(result.text.toString())
-                result.setText(null)
-                action.setText(null)
-                switcher=1
-            }
+//            if(result.text.isNotEmpty()){
+//                numberTwo.setText(null)
+//                numberOne.setText(result.text.toString())
+//                result.setText(null)
+//                action.setText(null)
+//                switcher=1
+//            }
             if (switcher == 1) {
                 val s = "${numberOne.text.toString()}${(it as Button).text}"
                 numberOne.setText(s)
@@ -198,6 +144,25 @@ class MainActivity : AppCompatActivity() {
                 numberTwo.setText(s)
             }
         }
+
+        val inptActions = View.OnClickListener{
+            if(action.text.isNotEmpty()&&numberOne.text.isNotEmpty()&&numberTwo.text.isNotEmpty()){
+                result.text=calculate(numberOne,numberTwo,action)
+                numberOne.setText(null)
+                numberTwo.setText(null)
+                val s = "${(it as Button).text}"
+                action.setText(s)
+                numberOne.setText(result.text)
+                result.setText(null)
+                switcher=2
+            }
+            else{
+                val s = "${(it as Button).text}"
+                action.setText(s)
+                switcher=2
+            }
+        }
+
 
         numNull.setOnClickListener(inptNums)
         numOne.setOnClickListener(inptNums)
@@ -210,6 +175,11 @@ class MainActivity : AppCompatActivity() {
         numEight.setOnClickListener(inptNums)
         numNine.setOnClickListener(inptNums)
 
+
+        plus.setOnClickListener(inptActions)
+        minus.setOnClickListener(inptActions)
+        divide.setOnClickListener(inptActions)
+        multiple.setOnClickListener(inptActions)
 
     }
 }
