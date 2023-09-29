@@ -8,31 +8,35 @@
     android:backgroundTint="#000000"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/tvNum2"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:inputType="number|numberDecimal|numberSigned"
         android:maxWidth="152dp"
+        android:maxLength="8"
         android:maxLines="2"
         android:minWidth="42dp"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnOperation" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvNum1"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:inputType="number|numberDecimal|numberSigned"
         android:maxWidth="152dp"
+        android:maxLength="8"
         android:maxLines="2"
         android:minWidth="42dp"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +57,7 @@
 
 
     <LinearLayout
-        android:id="@+id/buttons_layout"
+        android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -63,7 +67,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResult">
+        app:layout_constraintTop_toBottomOf="@+id/tvResult"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -376,7 +381,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:textColor="#FFFFFF"

@@ -81,6 +81,15 @@ class MainActivity : AppCompatActivity() {
                     val currentText = result.text.toString()
                     val buttonText = point.text.toString()
                     numberOne.text = currentText + buttonText
+                    numberTwo.setText(null)
+                    result.setText(null)
+                    switcher=1
+                    action.setText(null)
+                }
+                else{
+                    val currentText = result.text.toString()
+                    numberOne.text = currentText
+                    numberTwo.setText(null)
                     result.setText(null)
                     switcher=1
                     action.setText(null)
@@ -200,7 +209,6 @@ class MainActivity : AppCompatActivity() {
         numSeven.setOnClickListener(inptNums)
         numEight.setOnClickListener(inptNums)
         numNine.setOnClickListener(inptNums)
-        // point.setOnClickListener(inptNums)
 
 
     }
